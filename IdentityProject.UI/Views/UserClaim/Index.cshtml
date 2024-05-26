@@ -1,0 +1,32 @@
+﻿@model IEnumerable<System.Security.Claims.Claim>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3 class="text-center">User Claims</h3>
+
+<a asp-action="Create" class="btn btn-primary mt-2 mb-2">Add New Claim</a>
+
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <td>Subject</td>
+        <td>Issuere</td>
+        <td>Type</td>
+        <td>Value</td>
+        <td>Delete</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Subject.Name</td>
+            <td>@item.Issuer</td>
+            <td>@item.Type</td>
+            <td>@item.Value</td>
+            <td>
+                <a asp-action="Delete" asp-route-ClaimType="@item.Type" class="btn btn-danger">حذف</a>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<IdentityProject.UI.Areas.Admin.Models.Dto.RoleListDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center">مدیریت نقش کاربری</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">افزودن نقش کاربری</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", "Roles", new { id = item.Id, area = "Admin" }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("حذف", "Delete", "Roles", new { id = item.Id, area = "Admin" }, new { @class = "btn btn-danger" }) |
+                    @Html.ActionLink("کاربران این نقش", "UserInRole", "Roles", new { Name = item.Name, area = "admin" }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
